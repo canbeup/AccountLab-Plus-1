@@ -68,7 +68,7 @@
     `name`      VARCHAR( 255 )  NOT NULL ,
     `field`     VARCHAR( 255 )  NOT NULL ,
     `value`     VARCHAR( 255 )  NOT NULL
-    ) TYPE = MYISAM
+    ) ENGINE = MYISAM
     ";
 
     //sqls to upgrade from 2.8 r3 to 2.8 r10 (build no 13)
@@ -93,7 +93,7 @@
     `title`         VARCHAR( 255 )  NOT NULL ,
     `metatags`      TEXT            NOT NULL ,
     `content`       TEXT            NOT NULL
-    ) TYPE = MYISAM
+    ) ENGINE = MYISAM
     ";
     $Queries['2_8r10'][] = "ALTER TABLE `custompages` ADD `require_customer_login` ENUM( '0', '1' ) NOT NULL ";
     $Queries['2_8r10'][] = "ALTER TABLE `custompages` ADD `display_side_links` ENUM( '0', '1' ) NOT NULL ";
@@ -104,7 +104,7 @@
     `newsletter_id`         INT( 11 )       NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     `newsletter_subject`    VARCHAR( 255 )  NOT NULL ,
     `newsletter_body`       TEXT            NOT NULL
-    ) TYPE = MYISAM
+    ) ENGINE = MYISAM
     ";
     $Queries['2_8r4'][] = "ALTER TABLE `newsletters` ADD `customer_1`   INT( 11 )           NOT NULL ";
     $Queries['2_8r4'][] = "ALTER TABLE `newsletters` ADD `FromDate`     DATE                NOT NULL ";
@@ -155,7 +155,7 @@
     `payment_method`    VARCHAR( 255 )  NOT NULL ,
     `order_date`        DATETIME        NOT NULL ,
     UNIQUE (`item_number`)
-    ) TYPE = MYISAM
+    ) ENGINE = MYISAM
     ";
 
     $Queries['2_8r3_1'][] = "
@@ -163,7 +163,7 @@
     `orphan_order_id`       INT( 11 )       NOT NULL ,
     `orphan_order_field`    VARCHAR( 255 )  NOT NULL ,
     `orphan_order_value`    VARCHAR( 255 )  NOT NULL
-    ) TYPE = MYISAM
+    ) ENGINE = MYISAM
     ";
 
     $Queries['2_8r3_1'][] = "
@@ -171,24 +171,24 @@
     `faqgroup_id`   INT( 11 )       NOT NULL AUTO_INCREMENT PRIMARY KEY ,
     `faqgroup_name` VARCHAR( 255 )  NOT NULL ,
     `faqgroup_desc` TEXT            NOT NULL
-    ) TYPE = MYISAM
+    ) ENGINE = MYISAM
     ";
     $Queries['2_8r3_1'][] = "
     CREATE TABLE `orders_addons` (
     `sub_id`            INT( 11 ) NOT NULL DEFAULT '0',
     `addon_id`          INT( 11 ) NOT NULL DEFAULT '0',
     `activation_date`   DATE      NOT NULL DEFAULT '0000-00-00'
-    ) TYPE = MYISAM ";
+    ) ENGINE = MYISAM ";
     $Queries['2_8r3_1'][] ="
     CREATE TABLE `groups_products` (
     `group_id`      INT( 11 ) NOT NULL DEFAULT '0',
     `product_id`    INT( 11 ) NOT NULL DEFAULT '0'
-    ) TYPE = MYISAM ";
+    ) ENGINE = MYISAM ";
     $Queries['2_8r3_1'][] ="
     CREATE TABLE `products_addons` (
     `product_id`      INT( 11 ) NOT NULL DEFAULT '0',
     `addon_id`        INT( 11 ) NOT NULL DEFAULT '0'
-    ) TYPE = MYISAM ";
+    ) ENGINE = MYISAM ";
     $Queries['2_8r3_1'][] ="
     CREATE TABLE `customfields` (
     `field_id`          INT( 11 )                               NOT NULL AUTO_INCREMENT PRIMARY KEY ,
@@ -197,26 +197,26 @@
     `field_value`       VARCHAR( 255 )                          NOT NULL ,
     `field_optional`    ENUM( '0', '1' )                        NOT NULL ,
     `field_active`      ENUM( '1', '0' )                        NOT NULL
-    ) TYPE = MYISAM ";
+    ) ENGINE = MYISAM ";
 
     $Queries['2_8r3_1'][] ="
     CREATE TABLE `customers_customfields` (
     `customer_id`   INT( 11 )       NOT NULL ,
     `field_id`      INT( 11 )       NOT NULL ,
     `field_value`   VARCHAR( 255 )  NOT NULL
-    ) TYPE = MYISAM ";
+    ) ENGINE = MYISAM ";
 
     $Queries['2_8r3_1'][] ="
     CREATE TABLE `customers_orders` (
     `customer_id`   INT( 11 ) NOT NULL ,
     `order_id`      INT( 11 ) NOT NULL
-    ) TYPE = MYISAM ";
+    ) ENGINE = MYISAM ";
 
     $Queries['2_8r3_1'][] ="
     CREATE TABLE `orders_invoices` (
     `order_id`   INT( 11 ) NOT NULL ,
     `invoice_id` INT( 11 ) NOT NULL
-    ) TYPE = MYISAM ";
+    ) ENGINE = MYISAM ";
 
     $Queries['2_8r3_1'][] = "ALTER TABLE `customers` CHANGE `cust_deleted` `cust_deleted` ENUM( '0', '1' ) NOT NULL DEFAULT '0'";
     $Queries['2_8r3_2'][] = "UPDATE `customers` SET `cust_deleted`='0' WHERE `cust_deleted`!='1'";
@@ -294,7 +294,7 @@
     `post_variables`    TEXT                                                 NOT NULL ,
     `run_schedule`      ENUM( 'A_AC', 'A_PP', 'W_B', 'A_B', 'W_L', 'MANUAL', 'INACTIVE' ) NOT NULL DEFAULT 'INACTIVE'
     )
-    TYPE = MYISAM
+    ENGINE = MYISAM
     ";
     $Queries['2_8'][] = "
     CREATE TABLE `billing_cycles` (
@@ -302,7 +302,7 @@
     `cycle_month`   INT( 3 )        NOT NULL ,
     `cycle_name`    VARCHAR( 255 )  NOT NULL
     )
-    TYPE = MYISAM
+    ENGINE = MYISAM
     ";
     $Queries['2_8'][] = "
     CREATE TABLE `billings_products` (
@@ -311,7 +311,7 @@
     `product_table` ENUM( 'addons', 'hosting_price', 'subdomains' ) NOT NULL ,
     `amount`        DECIMAL( 16, 6 ) NOT NULL DEFAULT '0.00'
     )
-    TYPE = MYISAM
+    ENGINE = MYISAM
     ";
     $Queries['2_8'][] = "
     CREATE TABLE `access_ips` (
@@ -319,7 +319,7 @@
     `ip_address`    VARCHAR( 25 )   NOT NULL ,
     `admin_id`      INT( 11 )       NOT NULL
     )
-    TYPE = MYISAM
+    ENGINE = MYISAM
     ";
     $Queries['2_8'][] = "ALTER TABLE `order_conf` ADD `show_price`                  ENUM( '0', '1' )        NOT NULL DEFAULT '1'";
     $Queries['2_8'][] = "ALTER TABLE `order_conf` ADD `security_degree`             ENUM( '0', '1', '2' )   NOT NULL DEFAULT '0'";
@@ -451,7 +451,7 @@
     `registerfly_active`       VARCHAR(10)                     NOT NULL                                  ,
     `registerfly_test_mode`    VARCHAR(255)                    NOT NULL
     )
-    TYPE = MYISAM";
+    ENGINE = MYISAM";
 
     //sqls to upgrade from 2.6 r6 to 2.7 (build no 4)
     $Queries['2_7'][] = "ALTER TABLE `hosting_price` ADD `plan_friendly_name`        VARCHAR( 255 )         NOT NULL";
@@ -529,7 +529,7 @@
     `acl_stats`                     ENUM( '0', '1' ) NOT NULL ,
     `acl_status`                    ENUM( '0', '1' ) NOT NULL
     )
-    TYPE = MyISAM" ;
+    ENGINE = MyISAM" ;
 
     $Queries['2_7'][] = "
     CREATE TABLE `plesk_ids`
@@ -537,7 +537,7 @@
     `cust_id`   INT( 11 ) NOT NULL ,
     `plesk_id`  INT( 11 ) NOT NULL
     )
-    TYPE = MyISAM" ;
+    ENGINE = MyISAM" ;
 
     $Queries['2_7'][] = "
     CREATE TABLE `plesk_profiles`
@@ -560,7 +560,7 @@
     `make_dumps`                ENUM( '0', '1' ) NOT NULL ,
     `site_builder`              ENUM( '0', '1' ) NOT NULL
     )
-    TYPE = MyISAM" ;
+    ENGINE = MyISAM" ;
 
     $Queries['2_7'][] = "
     CREATE TABLE `ord_inv_rec`
@@ -568,7 +568,7 @@
     `rec_ord_id`        INT( 11 )           NOT NULL                        ,
     `rec_next_date`     DATE                NOT NULL DEFAULT '0000-00-00'
     )
-    TYPE = MyISAM" ;
+    ENGINE = MyISAM" ;
 
 
     $Queries['2_7'][] = "ALTER TABLE `ord_inv_rec` ADD UNIQUE ( `rec_ord_id` )";
@@ -584,7 +584,7 @@
     `sub_id`    INT( 11 ) NOT NULL ,
     `inv_no`    INT( 11 ) NOT NULL
     )
-    TYPE = MyISAM" ;
+    ENGINE = MyISAM" ;
 
     $Queries['2_6r6'][] = "ALTER TABLE `customers` CHANGE `discount` `discount` DECIMAL( 4, 2 ) NOT NULL DEFAULT '0.00'";
 
@@ -619,7 +619,7 @@
         `ms_status`             VARCHAR(255)    NOT NULL    DEFAULT ''                          ,
         PRIMARY KEY (`master_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `announce`
@@ -629,7 +629,7 @@
         `an_body`               LONGTEXT                                                        ,
         PRIMARY KEY (`ann_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `cust_tab`
@@ -671,7 +671,7 @@
         PRIMARY KEY  (`id`)                                                                ,
         UNIQUE KEY `username` (`username`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `dbusers`
@@ -683,7 +683,7 @@
         PRIMARY KEY  (`id`)                                                                ,
         UNIQUE KEY `username` (`username`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `directi`
@@ -697,14 +697,14 @@
         `di_debug`              VARCHAR(255)            NOT NULL DEFAULT ''                     ,
         PRIMARY KEY  (`di_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `domext`
         (
         `dom_extension`         VARCHAR(100)            NOT NULL DEFAULT ''
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `emails`
@@ -714,7 +714,7 @@
         `email_text`            LONGTEXT                NOT NULL                                ,
         PRIMARY KEY  (`email_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `enom`
@@ -726,7 +726,7 @@
         `enom_test_mode`        VARCHAR(255)            NOT NULL DEFAULT ''                     ,
         PRIMARY KEY  (`en_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `faq`
@@ -736,7 +736,7 @@
         `answers`               LONGTEXT                                                        ,
         PRIMARY KEY  (`faq_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `fraud_score`
@@ -757,7 +757,7 @@
         `score`                 VARCHAR(255)            NOT NULL DEFAULT ''                     ,
         PRIMARY KEY  (`fraud_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `invoice_schedule`
@@ -767,7 +767,7 @@
         `order_date`            DATE                    NOT NULL DEFAULT '0000-00-00'           ,
         `next_pay_date`         DATE                    NOT NULL DEFAULT '0000-00-00'
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `invoices`
@@ -782,7 +782,7 @@
         `status`                VARCHAR(255)            NOT NULL DEFAULT ''                     ,
         PRIMARY KEY  (`invoice_no`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `messages`
@@ -796,7 +796,7 @@
         `date_entered`          DATETIME                         DEFAULT NULL                   ,
         PRIMARY KEY  (`message_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `order_conf`
@@ -813,7 +813,7 @@
         `order_para1`           LONGTEXT                NOT NULL                                ,
         PRIMARY KEY  (`maor_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `pay_proc`
@@ -842,7 +842,7 @@
         `of_name`               VARCHAR(255)            NOT NULL DEFAULT ''                     ,
         PRIMARY KEY  (`id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `payment_log`
@@ -855,7 +855,7 @@
         `status`                VARCHAR(20)             NOT NULL DEFAULT ''                     ,
         PRIMARY KEY  (`payment_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `plesk_auto`
@@ -865,7 +865,7 @@
         `action`                LONGTEXT                NOT NULL                                ,
         PRIMARY KEY  (`auto_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `plesk_ips`
@@ -877,7 +877,7 @@
         `psa_ip_status`         VARCHAR(255)            NOT NULL DEFAULT ''                     ,
         PRIMARY KEY  (`psa_ip_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `plesk_plans`
@@ -912,7 +912,7 @@
         `pr_webmail`            VARCHAR(255)            NOT NULL DEFAULT ''                     ,
         PRIMARY KEY  (`plan_name`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `pricing`
@@ -923,7 +923,7 @@
         `dom_price`             DECIMAL(6,2)            NOT NULL DEFAULT '0.00'                 ,
         PRIMARY KEY  (`price_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `pricing_hosting`
@@ -938,7 +938,7 @@
         `welc_email`            LONGTEXT                NOT NULL                                ,
         PRIMARY KEY  (`plan_price_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `servers`
@@ -955,7 +955,7 @@
         `server_ssl`            VARCHAR(255)            NOT NULL DEFAULT ''                     ,
         `server_default`        VARCHAR(255)            NOT NULL DEFAULT ''                     ,
         PRIMARY KEY  (`server_id`)
-        ) TYPE=MyISAM
+        ) ENGINE=MyISAM
         ",
         "
         CREATE TABLE    `tax`
@@ -967,7 +967,7 @@
         `tax_enabled`           CHAR(2)                 NOT NULL DEFAULT ''                     ,
         PRIMARY KEY  (`tax_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         "
     );
     $install_sql_array2 = array(
@@ -1190,7 +1190,7 @@
         `dom_pass`        VARCHAR(160)    NOT NULL    DEFAULT ''                                  ,
         PRIMARY KEY  (`sub_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         "
 
     );
@@ -1363,7 +1363,7 @@
         `log_result`    TEXT            NOT NULL    DEFAULT ''                                  ,
         PRIMARY KEY (`log_time`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         ALTER TABLE     `pricing_hosting`
@@ -1516,7 +1516,7 @@
         `special_addon_disc`    VARCHAR(255)                NOT NULL                                ,
         `special_net_disc`      DECIMAL(10,2)               NOT NULL
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "
         ALTER TABLE     `specials`
@@ -1535,7 +1535,7 @@
         `title`                 VARCHAR(255)                NOT NULL    DEFAULT ''                  ,
         `disp_msg`              VARCHAR(255)                NOT NULL    DEFAULT ''
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         CREATE TABLE IF NOT EXISTS  `support_topics`
@@ -1544,7 +1544,7 @@
         `topic_name`            VARCHAR(255)                NOT NULL    DEFAULT ''                  ,
         PRIMARY KEY  (`topic_id`)
         )
-        TYPE=MyISAM
+        ENGINE=MyISAM
         ",
         "
         ALTER TABLE     `dbUsers`
@@ -1577,7 +1577,7 @@
         `ticket_date`           DATETIME    NOT NULL                                                ,
         `ticket_status`         INT(1)      NOT NULL
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "
         CREATE TABLE IF NOT EXISTS  `support_reply`
@@ -1588,7 +1588,7 @@
         `reply_text`            TEXT            NOT NULL                                            ,
         `reply_date`            DATETIME        NOT NULL
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "
         ALTER TABLE     `order_conf`
@@ -1680,7 +1680,7 @@
         `updated_on`            DATETIME                        NOT NULL                            ,
         `feed`                  ENUM('1','2','3')               NOT NULL    DEFAULT '1'
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "
         CREATE TABLE IF NOT EXISTS  `geoip_db`
@@ -1689,7 +1689,7 @@
         `IP_TO`                 DOUBLE                          NOT NULL                            ,
         `COUNTRY_CODE2`         VARCHAR(3)                      NOT NULL
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "
         ALTER TABLE     `sub_order`
@@ -1746,7 +1746,7 @@
         `group_active`          ENUM('1','0')           NOT NULL DEFAULT '1'                            ,
         `products`              TEXT                    NOT NULL
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "
         ALTER TABLE     `order_conf`
@@ -1923,7 +1923,7 @@
         `curr_name`             VARCHAR(25)     NOT NULL                                    ,
         `curr_factor`           DECIMAL(10,2)   NOT NULL
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "
         ALTER TABLE     `order_conf`
@@ -1977,7 +1977,7 @@
         `visiting_page`			TEXT				NOT NULL			,
         `items_in_basket`		TEXT				NOT NULL
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "ALTER TABLE 	`users_online` 	ADD 	`entry_time` 		DATETIME 			NOT NULL",
         "ALTER TABLE 	`users_online` 	ADD 	`log_session_id` 	VARCHAR(255) 		NOT NULL",
@@ -1988,7 +1988,7 @@
         `server_id`             INT(11)             NOT NULL            ,
         `ip_id`                 INT(11)             NOT NULL
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "
         CREATE TABLE IF NOT EXISTS `ips`
@@ -1997,7 +1997,7 @@
         `server_id`             INT(11)             NOT NULL                                    ,
         `ip`                    VARCHAR(15)         NOT NULL
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "ALTER TABLE     `servers`       ADD     `maximum_accounts`   INT(11)           NOT NULL",
         "ALTER TABLE     `servers`       ADD     `current_accounts`   INT(11)           NOT NULL",
@@ -2008,7 +2008,7 @@
         `server_id`             INT(11)             NOT NULL            ,
         `rotation_index`        INT(11)             NOT NULL
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "ALTER TABLE     `hosting_price`    ADD    `en_server_rotation`         ENUM('0','1')            NOT NULL",
         "ALTER TABLE     `order_server_ip`  ADD    `acct_status`                ENUM('0','1','2','3')    NOT NULL",
@@ -2039,7 +2039,7 @@
         `coupon_addons`     INT(1)                          NOT NULL                                ,
         `coupon_valid`      DATE                            NOT NULL
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "ALTER TABLE    `coupon`    ADD     `customer_use`      ENUM('0','1','2')       NOT NULL",
         "ALTER TABLE    `coupon`    ADD     `repeated`          ENUM('0','1')           NOT NULL",
@@ -2050,7 +2050,7 @@
         `sub_id`            INT(11)         NOT NULL ,
         `coupon_id`         INT(11)         NOT NULL
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "
         CREATE TABLE IF NOT EXISTS  `opensrs` (
@@ -2060,7 +2060,7 @@
         `opensrs_active`       VARCHAR(10)                     NOT NULL                                  ,
         `opensrs_test_mode`    VARCHAR(255)                    NOT NULL
         )
-        TYPE = MYISAM
+        ENGINE = MYISAM
         ",
         "ALTER TABLE    `enom`      CHANGE  `enom_pw`   `enom_pw`   VARCHAR(255)    NOT NULL",
         "ALTER TABLE    `enom`      CHANGE  `enom_uid`  `enom_uid`  VARCHAR(255)    NOT NULL",
